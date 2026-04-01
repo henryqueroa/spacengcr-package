@@ -1,7 +1,7 @@
 # 10-Email Outreach Sequence - Space Engineering
 
 > Prospect: Space Engineering (David & Fiorella Martinez)
-> Hub Page: [HUB_URL]
+> Hub Page: https://henryqueroa.github.io/spacengcr-package/
 > Calendar: https://calendly.com/henryque-zytrom/30min
 
 ---
@@ -16,7 +16,7 @@ I spent a few hours researching Space Engineering. Your AI and data pipeline wor
 
 I found 5 specific gaps in your current marketing and built a full package to show you what fixing them looks like. Landing page, campaign angles, ad scripts, and more.
 
-Everything is here: [HUB_URL]
+Everything is here: https://henryqueroa.github.io/spacengcr-package/
 
 It is yours. No strings attached.
 
@@ -39,7 +39,7 @@ Enterprise buyers compare 3-5 vendors before choosing one. The vendor with visib
 
 I built a version of your page that fixes this. It is in the package I sent:
 
-[HUB_URL]
+https://henryqueroa.github.io/spacengcr-package/
 
 Henryque
 
@@ -57,7 +57,7 @@ They added 3 client testimonials, 2 case study summaries, and a results section 
 
 The landing page I built for Space Engineering has a results section with your actual work: the veterinary AI system, the enterprise reporting automation, the production data pipelines.
 
-Check it out: [HUB_URL]
+Check it out: https://henryqueroa.github.io/spacengcr-package/
 
 Henryque
 
@@ -80,7 +80,7 @@ Take 3 of your best client results and turn each one into a LinkedIn post. Follo
 
 Post one per week for 3 weeks. You already have the results. You just need to make them visible.
 
-If you want to see the campaign angles I wrote for Space Engineering, they are here: [HUB_URL]
+If you want to see the campaign angles I wrote for Space Engineering, they are here: https://henryqueroa.github.io/spacengcr-package/
 
 Henryque
 
@@ -120,7 +120,7 @@ But you have something most of them do not. Real AI work in healthcare. A produc
 
 Imagine leading with: "The team that built AI for clinical healthcare. Now building for your industry."
 
-That is one of the 5 campaign angles I put together. The full list is here: [HUB_URL]
+That is one of the 5 campaign angles I put together. The full list is here: https://henryqueroa.github.io/spacengcr-package/
 
 Henryque
 
@@ -140,7 +140,7 @@ That is not a feature. That is a math problem.
 
 When you put numbers like that in front of prospects, price objections disappear. The ROI is obvious before the first call.
 
-I built this into the landing page I made for Space Engineering: [HUB_URL]
+I built this into the landing page I made for Space Engineering: https://henryqueroa.github.io/spacengcr-package/
 
 If you want help putting this in front of the right people, let me know.
 
@@ -158,7 +158,7 @@ A few weeks ago I sent you a marketing package I built for Space Engineering. La
 
 Did you get a chance to look at it?
 
-[HUB_URL]
+https://henryqueroa.github.io/spacengcr-package/
 
 Everything there is yours regardless.
 
@@ -194,7 +194,7 @@ David,
 
 This is my last email.
 
-The marketing package I built for Space Engineering is still live at [HUB_URL]. Use it however you want. The landing page, the campaign angles, the ad scripts. All yours.
+The marketing package I built for Space Engineering is still live at https://henryqueroa.github.io/spacengcr-package/. Use it however you want. The landing page, the campaign angles, the ad scripts. All yours.
 
 If the timing is ever right for a conversation about growth, you know where to find me.
 
