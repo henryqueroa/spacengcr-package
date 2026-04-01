@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Built for Space Engineering | ZYTROM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0a0f;
+      color: #f5f5f5;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Utility */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- HEADER ---- */
+    .header {
+      padding: 48px 0 64px;
+      text-align: center;
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4A843, transparent);
+    }
+
+    .header-logos {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #D4A843;
+    }
+    .prospect-logo img {
+      height: 36px;
+      width: auto;
+      filter: brightness(0.95);
+    }
+
+    .header h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+    .header h1 .gold {
+      color: #D4A843;
+    }
+    .header .subtitle {
+      font-size: 18px;
+      color: #a0a0a0;
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto 24px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #D4A843;
+      border: 1px solid rgba(212, 168, 67, 0.3);
+      padding: 6px 18px;
+      border-radius: 100px;
+    }
+
+    /* ---- STATS BAR ---- */
+    .stats-bar {
+      padding: 48px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 28px 16px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color 0.3s ease;
+    }
+    .stat-card:hover {
+      border-color: rgba(212,168,67,0.25);
+    }
+    .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: #D4A843;
+      margin-bottom: 4px;
+    }
+    .stat-suffix {
+      font-size: 36px;
+      font-weight: 700;
+      color: #D4A843;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: #a0a0a0;
+      font-weight: 400;
+    }
+
+    @media (max-width: 640px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ---- SECTION HEADINGS ---- */
+    .section-heading {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-heading .gold {
+      color: #D4A843;
+    }
+
+    /* ---- ACCORDION DELIVERABLES ---- */
+    .deliverables {
+      padding: 48px 0;
+    }
+
+    .accordion-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .accordion-item:hover {
+      border-color: rgba(212,168,67,0.2);
+    }
+    .accordion-item.active {
+      border-color: rgba(212,168,67,0.3);
+      box-shadow: 0 0 40px rgba(212,168,67,0.04);
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 28px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s ease;
+    }
+    .accordion-header:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .accordion-header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .accordion-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(212,168,67,0.12);
+      color: #D4A843;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .accordion-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .accordion-icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .accordion-icon::before,
+    .accordion-icon::after {
+      content: '';
+      position: absolute;
+      background: #a0a0a0;
+      transition: transform 0.3s ease;
+    }
+    .accordion-icon::before {
+      width: 14px;
+      height: 2px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .accordion-icon::after {
+      width: 2px;
+      height: 14px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .accordion-item.active .accordion-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .accordion-body-inner {
+      padding: 0 28px 28px;
+    }
+
+    .accordion-body p {
+      color: #c8c8c8;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .accordion-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Gap list */
+    .gap-list {
+      list-style: none;
+      margin-top: 16px;
+    }
+    .gap-list li {
+      padding: 14px 16px;
+      background: rgba(212,168,67,0.05);
+      border-left: 3px solid #D4A843;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #d8d8d8;
+      line-height: 1.6;
+    }
+    .gap-list li strong {
+      color: #E8C868;
+      font-weight: 600;
+    }
+
+    /* Angle cards */
+    .angle-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .angle-card:last-child {
+      margin-bottom: 0;
+    }
+    .angle-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #E8C868;
+      margin-bottom: 4px;
+    }
+    .angle-card .angle-hook {
+      font-size: 15px;
+      font-weight: 500;
+      font-style: italic;
+      color: #f5f5f5;
+      margin-bottom: 8px;
+    }
+    .angle-card p {
+      font-size: 14px;
+      color: #a0a0a0;
+      margin-bottom: 0;
+    }
+
+    /* Script blocks */
+    .script-block {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .script-block:last-child {
+      margin-bottom: 0;
+    }
+    .script-block h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #E8C868;
+      margin-bottom: 10px;
+    }
+    .script-block .script-preview {
+      font-size: 15px;
+      color: #d8d8d8;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* Landing page feature list */
+    .feature-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .feature-tag {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(212,168,67,0.1);
+      color: #E8C868;
+      border: 1px solid rgba(212,168,67,0.2);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: #D4A843;
+      color: #0a0a0f;
+    }
+    .btn-primary:hover {
+      background: #EDD98A;
+      box-shadow: 0 0 30px rgba(212,168,67,0.25);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #D4A843;
+      border: 1px solid rgba(212,168,67,0.4);
+    }
+    .btn-outline:hover {
+      background: rgba(212,168,67,0.08);
+      border-color: #D4A843;
+    }
+
+    .small-note {
+      font-size: 13px;
+      color: #707070;
+      margin-top: 8px;
+    }
+
+    /* VSL outline */
+    .vsl-step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .vsl-step:last-child {
+      margin-bottom: 0;
+    }
+    .vsl-label {
+      flex-shrink: 0;
+      width: 90px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #D4A843;
+      padding-top: 2px;
+    }
+    .vsl-content {
+      font-size: 14px;
+      color: #c8c8c8;
+      line-height: 1.6;
+    }
+
+    /* ---- PROCESS SECTION ---- */
+    .process {
+      padding: 80px 0;
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .process-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .process-card:hover {
+      border-color: rgba(212,168,67,0.25);
+      transform: translateY(-4px);
+    }
+    .process-step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(212,168,67,0.12);
+      color: #D4A843;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 auto 16px;
+    }
+    .process-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .process-card p {
+      font-size: 14px;
+      color: #a0a0a0;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ---- CTA SECTION ---- */
+    .cta-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+    .cta-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 64px 40px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #D4A843, transparent);
+    }
+    .cta-card h2 {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .cta-card .cta-sub {
+      font-size: 16px;
+      color: #a0a0a0;
+      max-width: 500px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .cta-card .cta-note {
+      font-size: 14px;
+      color: #707070;
+      margin-top: 20px;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      padding: 48px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: #D4A843;
+      margin-bottom: 4px;
+    }
+    .footer-tagline {
+      font-size: 13px;
+      color: #707070;
+      margin-bottom: 16px;
+    }
+    .footer p {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+    .footer a {
+      color: #D4A843;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer a:hover {
+      color: #EDD98A;
+    }
+
+    /* Divider */
+    .section-divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,168,67,0.4), transparent);
+      margin: 0 auto;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 640px) {
+      .header-logos {
+        flex-direction: row;
+        gap: 16px;
+      }
+      .logo-text {
+        font-size: 22px;
+        letter-spacing: 4px;
+      }
+      .prospect-logo img {
+        height: 28px;
+      }
+      .accordion-header {
+        padding: 20px;
+      }
+      .accordion-body-inner {
+        padding: 0 20px 20px;
+      }
+      .accordion-title {
+        font-size: 16px;
+      }
+      .stat-number, .stat-suffix {
+        font-size: 28px;
+      }
+      .vsl-step {
+        flex-direction: column;
+        gap: 4px;
+      }
+      .vsl-label {
+        width: auto;
+      }
+      .cta-card {
+        padding: 48px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <div class="header-logos reveal">
+        <div class="logo-text">ZYTROM</div>
+        <div class="prospect-logo">
+          <img src="https://www.spacecostarica.com/assets/logo-Dw0CQz3x.png" alt="Space Engineering logo">
+        </div>
+      </div>
+      <h1 class="reveal">Built Exclusively for <span class="gold">Space Engineering</span></h1>
+      <p class="subtitle reveal">A complete marketing package created specifically for your business</p>
+      <span class="badge reveal">Prepared April 2026</span>
+    </div>
+  </header>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div>
+            <span class="stat-number" data-target="12">0</span><span class="stat-suffix">+</span>
+          </div>
+          <div class="stat-label">Hours of Research</div>
+        </div>
+        <div class="stat-card reveal">
+          <div>
+            <span class="stat-number" data-target="5">0</span>
+          </div>
+          <div class="stat-label">Marketing Gaps Identified</div>
+        </div>
+        <div class="stat-card reveal">
+          <div>
+            <span class="stat-number" data-target="2">0</span>
+          </div>
+          <div class="stat-label">Live Pages Built</div>
+        </div>
+        <div class="stat-card reveal">
+          <div>
+            <span class="stat-number" data-target="10">0</span>
+          </div>
+          <div class="stat-label">Custom Outreach Emails</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="deliverables">
+    <div class="container">
+      <h2 class="section-heading reveal">What We <span class="gold">Built for You</span></h2>
+
+      <!-- Section 1: Research Snapshot -->
+      <div class="accordion-item reveal">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-header-left">
+            <div class="accordion-number">01</div>
+            <div class="accordion-title">Research Snapshot</div>
+          </div>
+          <div class="accordion-icon"></div>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Space Engineering is a technology company based in Costa Rica offering AI Integration, Data Pipelines, Cloud Infrastructure, and Web/Mobile App development. Founded in 2021, the company is led by David (Founder &amp; Lead Engineer) and Fiorella Martinez (Co-Founder &amp; CTO).</p>
+            <p>We analyzed your website, LinkedIn presence (962 followers), Instagram, GitHub profiles, and industry positioning.</p>
+            <p style="font-weight: 600; color: #E8C868; margin-bottom: 12px;">5 Gaps We Found:</p>
+            <ol class="gap-list">
+              <li><strong>Gap 1:</strong> No paid acquisition. Zero ads running on any platform. New client acquisition relies entirely on organic reach.</li>
+              <li><strong>Gap 2:</strong> No social proof on website. Zero testimonials, zero case studies, zero client logos. Enterprise buyers need proof before hiring a tech partner.</li>
+              <li><strong>Gap 3:</strong> No lead capture system. Only a contact form for ready-to-buy prospects. No lead magnet, no email nurture, no way to warm up interested visitors.</li>
+              <li><strong>Gap 4:</strong> No content marketing. No blog, no articles, no SEO strategy. Your AI and data expertise is invisible in organic search.</li>
+              <li><strong>Gap 5:</strong> Broad positioning. AI + Data + Cloud + Web Apps for "enterprises." No niche focus or named methodology to differentiate from competitors.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Campaign Angles -->
+      <div class="accordion-item reveal">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-header-left">
+            <div class="accordion-number">02</div>
+            <div class="accordion-title">Campaign Angles</div>
+          </div>
+          <div class="accordion-icon"></div>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="angle-card">
+              <h4>Angle 1: The Invisible Bottleneck</h4>
+              <p class="angle-hook">"Your Team Spends 40% of Their Week on Work a Machine Should Do."</p>
+              <p>Focus on the systems problem, not the people problem. Data lives in 5 different tools. Reports take days instead of minutes. The bottleneck is invisible because everyone assumes it is normal.</p>
+            </div>
+            <div class="angle-card">
+              <h4>Angle 2: The Half-Built Problem</h4>
+              <p class="angle-hook">"You Already Tried Hiring a Developer. It Did Not Work. Here Is Why."</p>
+              <p>Individual tools break. Integrated systems scale. Most companies hire a freelancer to build one piece, then another freelancer to build the next. Nothing connects. Nothing scales.</p>
+            </div>
+            <div class="angle-card">
+              <h4>Angle 3: The AI Readiness Gap</h4>
+              <p class="angle-hook">"Your Board Wants an AI Strategy. Your Team Does Not Know Where to Start."</p>
+              <p>Infrastructure before tools. Most companies skip the foundation and jump straight to AI products. That is why 87% of AI projects never make it to production.</p>
+            </div>
+            <div class="angle-card">
+              <h4>Angle 4: Proof in Production</h4>
+              <p class="angle-hook">"From Tumor Detection to Enterprise Automation. Real AI, Real Results."</p>
+              <p>Lead with the veterinary AI case study. This is not a pitch deck. This is a production system running in real clinical settings, making real diagnoses.</p>
+            </div>
+            <div class="angle-card">
+              <h4>Angle 5: The Costa Rica Advantage</h4>
+              <p class="angle-hook">"World-Class Engineering at a Fraction of Silicon Valley Pricing."</p>
+              <p>Same quality. Better pricing. Overlapping time zones with US clients. No communication barriers. No midnight standups. Just results.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Ad Script Concepts -->
+      <div class="accordion-item reveal">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-header-left">
+            <div class="accordion-number">03</div>
+            <div class="accordion-title">Ad Script Concepts</div>
+          </div>
+          <div class="accordion-icon"></div>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="script-block">
+              <h4>Script 1: Direct Response</h4>
+              <p class="script-preview">Your team spends 20 hours this week copying data between spreadsheets. Not because they are lazy. Because your systems do not talk to each other.</p>
+              <p class="script-preview">Every manual step costs you money. Every disconnected tool slows your team down. And every week you wait, your competitors get faster.</p>
+              <p class="script-preview">Space Engineering builds the infrastructure that connects everything. Your data flows automatically. Your reports generate themselves. Your team focuses on the work that actually grows your business.</p>
+              <p class="script-preview">One call. We will find the bottleneck. Then we will fix it.</p>
+            </div>
+            <div class="script-block">
+              <h4>Script 2: Proof-Led</h4>
+              <p class="script-preview">We built an AI system that detects tumors in veterinary patients. Not a demo. Not a pitch deck. A production system running in real clinical settings.</p>
+              <p class="script-preview">That is what separates Space Engineering from every other dev shop. We do not build prototypes. We build things that work in the real world, with real data, under real pressure.</p>
+              <p class="script-preview">From healthcare AI to enterprise automation, we have done it. And we can do it for your business too. Book a 30-minute call and we will show you exactly how.</p>
+            </div>
+            <div class="script-block">
+              <h4>Script 3: Educational</h4>
+              <p class="script-preview">Most companies approach AI backwards. Here is what they do wrong.</p>
+              <p class="script-preview">Step 1: They see a competitor using a chatbot. Step 2: They call a vendor and say "build us a chatbot." Step 3: The chatbot fails because there is no data infrastructure underneath it.</p>
+              <p class="script-preview">AI is not a product. It is a layer. And it only works when the foundation is built first. That means clean data pipelines, connected systems, and infrastructure that can actually support machine learning.</p>
+              <p class="script-preview">Space Engineering builds that foundation. Then the AI works. Book a free audit and we will show you exactly where to start.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Landing Page Preview -->
+      <div class="accordion-item reveal">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-header-left">
+            <div class="accordion-number">04</div>
+            <div class="accordion-title">Landing Page Preview</div>
+          </div>
+          <div class="accordion-icon"></div>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>We built a complete high-converting landing page for Space Engineering using your exact brand identity. Colors, fonts, and visual style all match your existing presence.</p>
+            <div class="feature-tags">
+              <span class="feature-tag">Hero Section</span>
+              <span class="feature-tag">Problem Agitation</span>
+              <span class="feature-tag">Services Showcase</span>
+              <span class="feature-tag">Results Section</span>
+              <span class="feature-tag">Lead Magnet Capture</span>
+              <span class="feature-tag">Team Section</span>
+              <span class="feature-tag">FAQ Accordion</span>
+            </div>
+            <p>The page is live and ready to use. Built to convert visitors into booked calls.</p>
+            <div style="margin-top: 20px;">
+              <a href="landing-page.html" class="btn btn-outline">View Live Page &rarr;</a>
+            </div>
+            <p class="small-note">Link will be updated to the live URL after deployment.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: VSL Outline -->
+      <div class="accordion-item reveal">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div class="accordion-header-left">
+            <div class="accordion-number">05</div>
+            <div class="accordion-title">VSL Outline</div>
+          </div>
+          <div class="accordion-icon"></div>
+        </div>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="vsl-step">
+              <div class="vsl-label">Hook</div>
+              <div class="vsl-content">What would your business look like if every manual process was automated by tomorrow?</div>
+            </div>
+            <div class="vsl-step">
+              <div class="vsl-label">Problem</div>
+              <div class="vsl-content">Your team's data lives across 5 different tools. Reports take days to pull together. You have tried hiring developers before, but nothing connected. Meanwhile, your competitors are getting faster every quarter.</div>
+            </div>
+            <div class="vsl-step">
+              <div class="vsl-label">Solution</div>
+              <div class="vsl-content">A full technology stack audit. We identify the exact bottleneck slowing your business down. Then we build an integrated system that connects everything, automates the manual work, and gives your team time back.</div>
+            </div>
+            <div class="vsl-step">
+              <div class="vsl-label">Credibility</div>
+              <div class="vsl-content">Founded in 2021. AI systems for healthcare (tumor detection in production). Enterprise-grade data pipelines. Certified on AWS and GCP. Real projects, real results.</div>
+            </div>
+            <div class="vsl-step">
+              <div class="vsl-label">Offer</div>
+              <div class="vsl-content">Free bottleneck audit. 30 minutes. You get a personalized roadmap showing exactly where to start and what to fix first.</div>
+            </div>
+            <div class="vsl-step">
+              <div class="vsl-label">CTA</div>
+              <div class="vsl-content">Book your free audit. Your team deserves to work on growth, not data entry.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROCESS SECTION -->
+  <section class="process">
+    <div class="container">
+      <h2 class="section-heading reveal">How We <span class="gold">Work</span></h2>
+      <div class="process-grid">
+        <div class="process-card reveal">
+          <div class="process-step-number">1</div>
+          <h3>Diagnose</h3>
+          <p>We audit your current marketing, sales flow, and customer acquisition system to find the exact bottleneck.</p>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-step-number">2</div>
+          <h3>Design</h3>
+          <p>We build a custom strategy targeting the constraint. Offer, messaging, ads, funnel, and conversion flow.</p>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-step-number">3</div>
+          <h3>Deploy</h3>
+          <p>We execute everything. You review. We iterate until the system performs.</p>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-step-number">4</div>
+          <h3>Scale</h3>
+          <p>Once the bottleneck is fixed, we optimize and scale what works.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card reveal">
+        <h2>Ready to Implement This?</h2>
+        <p class="cta-sub">Everything above was built specifically for Space Engineering. Imagine what we could do working together.</p>
+        <a href="https://calendly.com/henryque-zytrom/30min" class="btn btn-primary" target="_blank" rel="noopener">Book a 30-Minute Call</a>
+        <p class="cta-note">No commitment. No sales pitch. Just a conversation about growth.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">ZYTROM</div>
+      <div class="footer-tagline">Done-for-you growth systems</div>
+      <p>Prepared specifically for Space Engineering. April 2026.</p>
+      <p><a href="https://calendly.com/henryque-zytrom/30min" target="_blank" rel="noopener">Schedule a call</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Accordion toggle
+    function toggleAccordion(header) {
+      const item = header.parentElement;
+      const body = item.querySelector('.accordion-body');
+      const isActive = item.classList.contains('active');
+
+      // Close all
+      document.querySelectorAll('.accordion-item').forEach(function(el) {
+        el.classList.remove('active');
+        el.querySelector('.accordion-body').style.maxHeight = null;
+      });
+
+      // Open clicked (if it was closed)
+      if (!isActive) {
+        item.classList.add('active');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    }
+
+    // Scroll reveal with IntersectionObserver
+    (function() {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+
+    // Count-up animation for stats
+    (function() {
+      var animated = false;
+
+      function animateCountUp() {
+        if (animated) return;
+        animated = true;
+
+        document.querySelectorAll('.stat-number[data-target]').forEach(function(el) {
+          var target = parseInt(el.getAttribute('data-target'), 10);
+          var duration = 1800;
+          var startTime = null;
+
+          function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+          }
+
+          function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            var easedProgress = easeOutCubic(progress);
+            var current = Math.round(easedProgress * target);
+            el.textContent = current;
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              el.textContent = target;
+            }
+          }
+
+          requestAnimationFrame(step);
+        });
+      }
+
+      var statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateCountUp();
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.3
+      });
+
+      var statsSection = document.querySelector('.stats-bar');
+      if (statsSection) {
+        statsObserver.observe(statsSection);
+      }
+    })();
+  </script>
+
+</body>
+</html>

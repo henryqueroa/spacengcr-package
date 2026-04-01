@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Engineering - AI, Data & Cloud Solutions</title>
+  <meta name="description" content="Space Engineering builds AI integration, data pipelines, and cloud infrastructure that connect everything your business runs on.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000000;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #161924;
+      color: #ffffff;
+      font-weight: 400;
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ============================================
+       UTILITY
+    ============================================ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-padding {
+      padding: 100px 0;
+    }
+
+    .section-headline {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .section-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: #93a7c1;
+      max-width: 680px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ============================================
+       BUTTONS
+    ============================================ */
+    .btn-primary {
+      display: inline-block;
+      padding: 0.8rem 1.75rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      font-family: 'Poppins', sans-serif;
+      border: 1px solid rgba(86, 124, 143, 0.5);
+      background: rgba(86, 124, 143, 0.25);
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover {
+      background: rgba(86, 124, 143, 0.5);
+      border-color: rgba(86, 124, 143, 0.8);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(86, 124, 143, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       SCROLL REVEAL
+    ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       GLASSMORPHISM CARD
+    ============================================ */
+    .glass-card {
+      background: rgba(22, 25, 36, 0.7);
+      border: 1px solid rgba(147, 167, 193, 0.2);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 32px;
+      transition: border-color 0.35s ease, transform 0.35s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(86, 124, 143, 0.45);
+      transform: translateY(-4px);
+    }
+
+    /* ============================================
+       NAVBAR
+    ============================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(22, 25, 36, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 10px 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar-logo img {
+      height: 38px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #93a7c1;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-cta {
+      margin-left: 8px;
+    }
+
+    .nav-cta .btn-primary {
+      padding: 0.55rem 1.35rem;
+      font-size: 0.85rem;
+    }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+      margin: 6px 0;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(22, 25, 36, 0.98);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        flex-direction: column;
+        justify-content: center;
+        gap: 28px;
+        transition: right 0.4s ease;
+        padding: 40px;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-cta {
+        margin-left: 0;
+      }
+    }
+
+    /* ============================================
+       HERO SECTION
+    ============================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    /* Star / particle background */
+    .hero-stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 50%;
+      animation: drift linear infinite;
+      opacity: 0;
+    }
+
+    .star:nth-child(1)  { top: 12%; left: 8%;  animation-duration: 28s; animation-delay: 0s;   opacity: 0.3; width: 1px; height: 1px; }
+    .star:nth-child(2)  { top: 35%; left: 22%; animation-duration: 34s; animation-delay: 2s;   opacity: 0.5; }
+    .star:nth-child(3)  { top: 58%; left: 45%; animation-duration: 26s; animation-delay: 1s;   opacity: 0.2; width: 3px; height: 3px; }
+    .star:nth-child(4)  { top: 78%; left: 67%; animation-duration: 32s; animation-delay: 4s;   opacity: 0.4; }
+    .star:nth-child(5)  { top: 15%; left: 80%; animation-duration: 30s; animation-delay: 3s;   opacity: 0.35; width: 1px; height: 1px; }
+    .star:nth-child(6)  { top: 42%; left: 90%; animation-duration: 36s; animation-delay: 5s;   opacity: 0.25; }
+    .star:nth-child(7)  { top: 65%; left: 15%; animation-duration: 22s; animation-delay: 1.5s; opacity: 0.45; width: 1px; height: 1px; }
+    .star:nth-child(8)  { top: 88%; left: 38%; animation-duration: 28s; animation-delay: 6s;   opacity: 0.3; }
+    .star:nth-child(9)  { top: 25%; left: 55%; animation-duration: 40s; animation-delay: 0.5s; opacity: 0.2; width: 3px; height: 3px; }
+    .star:nth-child(10) { top: 50%; left: 72%; animation-duration: 24s; animation-delay: 3.5s; opacity: 0.5; }
+    .star:nth-child(11) { top: 8%;  left: 42%; animation-duration: 33s; animation-delay: 7s;   opacity: 0.15; width: 1px; height: 1px; }
+    .star:nth-child(12) { top: 70%; left: 85%; animation-duration: 29s; animation-delay: 2.5s; opacity: 0.35; }
+    .star:nth-child(13) { top: 92%; left: 12%; animation-duration: 38s; animation-delay: 8s;   opacity: 0.2; width: 2px; height: 2px; }
+    .star:nth-child(14) { top: 30%; left: 95%; animation-duration: 25s; animation-delay: 1.2s; opacity: 0.4; width: 1px; height: 1px; }
+    .star:nth-child(15) { top: 55%; left: 5%;  animation-duration: 31s; animation-delay: 4.5s; opacity: 0.3; }
+    .star:nth-child(16) { top: 18%; left: 62%; animation-duration: 27s; animation-delay: 6.5s; opacity: 0.25; width: 3px; height: 3px; }
+    .star:nth-child(17) { top: 82%; left: 50%; animation-duration: 35s; animation-delay: 0.8s; opacity: 0.45; width: 1px; height: 1px; }
+    .star:nth-child(18) { top: 45%; left: 30%; animation-duration: 23s; animation-delay: 5.5s; opacity: 0.15; }
+    .star:nth-child(19) { top: 5%;  left: 75%; animation-duration: 42s; animation-delay: 3.2s; opacity: 0.3; width: 2px; height: 2px; }
+    .star:nth-child(20) { top: 68%; left: 58%; animation-duration: 26s; animation-delay: 7.5s; opacity: 0.4; width: 1px; height: 1px; }
+
+    @keyframes drift {
+      0% {
+        transform: translate(0, 0);
+        opacity: 0;
+      }
+      10% {
+        opacity: var(--star-opacity, 0.3);
+      }
+      90% {
+        opacity: var(--star-opacity, 0.3);
+      }
+      100% {
+        transform: translate(-60px, -80px);
+        opacity: 0;
+      }
+    }
+
+    /* Subtle glow behind hero */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(86, 124, 143, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+
+    .hero-headline {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: #93a7c1;
+      font-weight: 300;
+      max-width: 620px;
+      margin-bottom: 36px;
+      line-height: 1.75;
+    }
+
+    /* ============================================
+       PROBLEMS SECTION
+    ============================================ */
+    .problems {
+      background: #000000;
+    }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .problem-card {
+      padding: 36px 28px;
+      text-align: center;
+    }
+
+    .problem-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      background: rgba(86, 124, 143, 0.15);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .problem-card p {
+      font-size: 1rem;
+      color: #93a7c1;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .problems-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* ============================================
+       SERVICES SECTION
+    ============================================ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .service-card {
+      padding: 36px;
+    }
+
+    .service-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .service-tag {
+      font-size: 0.8rem;
+      color: #567c8f;
+      font-weight: 500;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: #93a7c1;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================
+       RESULTS SECTION
+    ============================================ */
+    .results {
+      background: #000000;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .result-card {
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+    }
+
+    .result-number {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #567c8f;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .result-card p {
+      font-size: 1rem;
+      color: #93a7c1;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* ============================================
+       LEAD MAGNET SECTION
+    ============================================ */
+    .lead-magnet {
+      position: relative;
+    }
+
+    .lead-magnet-box {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .lead-magnet-box h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .lead-magnet-box .sub {
+      color: #93a7c1;
+      font-weight: 300;
+      font-size: 1rem;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .lead-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .lead-form input {
+      padding: 14px 20px;
+      border-radius: 100px;
+      border: 1px solid rgba(147, 167, 193, 0.2);
+      background: rgba(22, 25, 36, 0.8);
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .lead-form input::placeholder {
+      color: rgba(147, 167, 193, 0.5);
+    }
+
+    .lead-form input:focus {
+      border-color: rgba(86, 124, 143, 0.6);
+    }
+
+    .lead-form .btn-primary {
+      width: 100%;
+      text-align: center;
+    }
+
+    .lead-form .disclaimer {
+      font-size: 0.78rem;
+      color: rgba(147, 167, 193, 0.5);
+      margin-top: 4px;
+    }
+
+    /* ============================================
+       ABOUT / TEAM SECTION
+    ============================================ */
+    .about {
+      background: #000000;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .team-card {
+      padding: 36px;
+      text-align: center;
+    }
+
+    .team-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      border: 2px solid rgba(86, 124, 143, 0.4);
+    }
+
+    .team-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .team-card .role {
+      font-size: 0.85rem;
+      color: #567c8f;
+      font-weight: 500;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .team-card p {
+      font-size: 0.95rem;
+      color: #93a7c1;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .team-footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #93a7c1;
+      font-weight: 300;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    /* ============================================
+       FINAL CTA SECTION
+    ============================================ */
+    .final-cta {
+      text-align: center;
+      position: relative;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(86, 124, 143, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .final-cta .section-headline {
+      position: relative;
+      z-index: 1;
+    }
+
+    .final-cta .section-sub {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 36px;
+    }
+
+    .final-cta .btn-primary {
+      position: relative;
+      z-index: 1;
+      padding: 1rem 2.2rem;
+      font-size: 1.05rem;
+    }
+
+    /* ============================================
+       FAQ SECTION
+    ============================================ */
+    .faq {
+      background: #000000;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 48px auto 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(147, 167, 193, 0.12);
+    }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ffffff;
+      transition: color 0.3s ease;
+      gap: 16px;
+    }
+
+    .faq-question:hover {
+      color: #567c8f;
+    }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      position: relative;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: #567c8f;
+      transition: transform 0.35s ease;
+    }
+
+    .faq-icon::before {
+      width: 14px;
+      height: 2px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-icon::after {
+      width: 2px;
+      height: 14px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-item.active .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 0 20px;
+      font-size: 0.95rem;
+      color: #93a7c1;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .footer {
+      padding: 48px 0 32px;
+      border-top: 1px solid rgba(147, 167, 193, 0.1);
+    }
+
+    .footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-logo img {
+      height: 30px;
+      width: auto;
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: rgba(147, 167, 193, 0.5);
+      font-weight: 300;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-right a {
+      font-size: 0.85rem;
+      color: #93a7c1;
+      font-weight: 400;
+      transition: color 0.3s ease;
+    }
+
+    .footer-right a:hover {
+      color: #ffffff;
+    }
+
+    .footer-email {
+      font-size: 0.85rem;
+      color: #567c8f;
+      font-weight: 400;
+    }
+
+    @media (max-width: 600px) {
+      .footer .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-left {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-right {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    /* ============================================
+       DIVIDER
+    ============================================ */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(147, 167, 193, 0.15), transparent);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================
+       NAVBAR
+  ================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="navbar-logo">
+        <img src="https://www.spacecostarica.com/assets/logo-Dw0CQz3x.png" alt="Space Engineering logo">
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav-cta"><a href="#contact" class="btn-primary">Get Your Free Audit</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ================================
+       HERO
+  ================================= -->
+  <section class="hero" id="hero">
+    <div class="hero-stars">
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content reveal">
+        <h1 class="hero-headline">Your Data Is Talking.<br>Your Systems Are Not Listening.</h1>
+        <p class="hero-sub">We build the AI integration, data pipelines, and cloud infrastructure that connect everything your business runs on. So your team focuses on growth, not data entry.</p>
+        <a href="https://calendly.com/henryque-zytrom/30min" target="_blank" rel="noopener" class="btn-primary">Book Your Free Bottleneck Audit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       PROBLEMS
+  ================================= -->
+  <section class="problems section-padding" id="problems">
+    <div class="container">
+      <h2 class="section-headline text-center reveal">Sound Familiar?</h2>
+      <div class="problems-grid">
+        <div class="glass-card problem-card reveal">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#567c8f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <p>Your team spends 20+ hours a week copying data between tools that should be connected.</p>
+        </div>
+        <div class="glass-card problem-card reveal">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#567c8f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <p>You hired a developer to build a tool. It worked for 6 months. Now nobody maintains it.</p>
+        </div>
+        <div class="glass-card problem-card reveal">
+          <div class="problem-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#567c8f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p>Leadership wants an AI strategy. Your team is stuck at "where do we even start?"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       SERVICES
+  ================================= -->
+  <section class="section-padding" id="services">
+    <div class="container">
+      <h2 class="section-headline text-center reveal">One Team. The Full Stack.</h2>
+      <p class="section-sub text-center mx-auto reveal">We do not just build one piece. We build the connected system.</p>
+      <div class="services-grid">
+        <div class="glass-card service-card reveal">
+          <h3>AI Integration</h3>
+          <span class="service-tag">LLMs, Chatbots, Automation, Intelligent Agents</span>
+          <p>From prediction models to automated workflows, we build AI that runs in production, not in a pitch deck.</p>
+        </div>
+        <div class="glass-card service-card reveal">
+          <h3>Data Pipelines</h3>
+          <span class="service-tag">Analytics, Warehousing, ETL</span>
+          <p>Your data flows from every source into one system. Reports that took 3 days now take 3 minutes.</p>
+        </div>
+        <div class="glass-card service-card reveal">
+          <h3>Cloud Infrastructure</h3>
+          <span class="service-tag">AWS, GCP, DevOps, Security</span>
+          <p>Scalable, secure architecture that grows with your business without rebuilding from scratch.</p>
+        </div>
+        <div class="glass-card service-card reveal">
+          <h3>Web &amp; Mobile Apps</h3>
+          <span class="service-tag">React, Next.js, Full Stack</span>
+          <p>High-performance applications with user experiences your customers actually enjoy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       RESULTS
+  ================================= -->
+  <section class="results section-padding" id="results">
+    <div class="container">
+      <h2 class="section-headline text-center reveal">Real Systems. Real Impact.</h2>
+      <div class="results-grid">
+        <div class="glass-card result-card reveal">
+          <div class="result-number">01</div>
+          <p>Built an AI tumor detection system for veterinary medicine, running in live clinical settings.</p>
+        </div>
+        <div class="glass-card result-card reveal">
+          <div class="result-number">02</div>
+          <p>Automated 30+ hours of weekly manual reporting into real-time dashboards.</p>
+        </div>
+        <div class="glass-card result-card reveal">
+          <div class="result-number">03</div>
+          <p>Deployed production-grade data pipelines across AWS and GCP for enterprise clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       LEAD MAGNET
+  ================================= -->
+  <section class="lead-magnet section-padding">
+    <div class="container">
+      <div class="glass-card lead-magnet-box reveal">
+        <h2>Get Your Free AI Readiness Assessment</h2>
+        <p class="sub">Answer 5 questions about your current tech stack. We will send you a personalized report showing the 3 highest-impact automation opportunities in your business.</p>
+        <form class="lead-form" onsubmit="handleFormSubmit(event)">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your work email" required>
+          <button type="submit" class="btn-primary">Send My Free Assessment</button>
+          <p class="disclaimer">No spam. No sales pitch. Just a clear roadmap.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       ABOUT / TEAM
+  ================================= -->
+  <section class="about section-padding" id="about">
+    <div class="container">
+      <h2 class="section-headline text-center reveal">Built by Engineers Who Ship</h2>
+      <div class="team-grid">
+        <div class="glass-card team-card reveal">
+          <img src="https://www.spacecostarica.com/team/david.jpg" alt="David, Founder and Lead Engineer" class="team-photo">
+          <h3>David</h3>
+          <span class="role">Founder &amp; Lead Engineer</span>
+          <p>Machine Learning, Cloud Architecture, End-to-End AI Pipelines. Turning complex data strategies into production-grade solutions.</p>
+        </div>
+        <div class="glass-card team-card reveal">
+          <img src="https://www.spacecostarica.com/team/fiorella.jpg" alt="Fiorella Martinez, Co-Founder and CTO" class="team-photo">
+          <h3>Fiorella Martinez</h3>
+          <span class="role">Co-Founder &amp; CTO</span>
+          <p>Data Quality, Cloud Security, Reliability Engineering. Building systems that ensure absolute data integrity.</p>
+        </div>
+      </div>
+      <p class="team-footer reveal">Founded in 2021. Based in Costa Rica. Serving clients globally.</p>
+    </div>
+  </section>
+
+  <!-- ================================
+       FINAL CTA
+  ================================= -->
+  <section class="final-cta section-padding" id="contact">
+    <div class="container">
+      <h2 class="section-headline reveal">Your Systems Should Work<br>as Hard as Your Team</h2>
+      <p class="section-sub mx-auto reveal" style="margin-bottom: 36px;">Book a 30-minute bottleneck audit. We will review your current tech stack, find the gaps, and give you a clear plan to fix them. Free. No commitment.</p>
+      <a href="https://calendly.com/henryque-zytrom/30min" target="_blank" rel="noopener" class="btn-primary reveal" style="padding: 1rem 2.2rem; font-size: 1.05rem;">Book Your Free Audit</a>
+    </div>
+  </section>
+
+  <!-- ================================
+       FAQ
+  ================================= -->
+  <section class="faq section-padding" id="faq">
+    <div class="container">
+      <h2 class="section-headline text-center reveal">Common Questions</h2>
+      <div class="faq-list">
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>What does a bottleneck audit include?</span>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We review your current tech stack, data flow, and manual processes. We identify the 3 highest-impact areas where automation or better infrastructure would save the most time and money. You get a written report with specific recommendations.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>How long does a typical project take?</span>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Most projects run 1 to 6 months depending on scope. A focused AI integration or data pipeline can be live in 4 to 6 weeks. Full infrastructure builds with multiple components typically take 3 to 6 months.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Do you work with companies outside Costa Rica?</span>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes. We work with clients globally. Our team overlaps with US time zones and we communicate in English and Spanish.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>What if we already have some infrastructure in place?</span>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We build on top of what you have. We do not rip and replace unless it is necessary. Most clients have existing tools (CRMs, databases, spreadsheets) that we connect into a unified system.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>What makes Space Engineering different from other dev shops?</span>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We build the full stack. Most vendors sell one piece. We build the AI, the data pipeline that feeds it, and the cloud infrastructure that runs it. Everything works together from day one.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>What is the investment?</span>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Every project is scoped based on your specific needs. Book a bottleneck audit and we will give you a clear proposal with transparent pricing. No surprises.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       FOOTER
+  ================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-left">
+        <a href="#" class="footer-logo">
+          <img src="https://www.spacecostarica.com/assets/logo-Dw0CQz3x.png" alt="Space Engineering logo">
+        </a>
+        <span class="footer-copy">&copy; 2026 Space Engineering. All rights reserved.</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.linkedin.com/company/spacengcr/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/spacengcr/" target="_blank" rel="noopener">Instagram</a>
+        <span class="footer-email">info@spacecostarica.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================
+       JAVASCRIPT
+  ================================= -->
+  <script>
+    // --- Navbar scroll behavior ---
+    (function() {
+      var navbar = document.getElementById('navbar');
+      var scrollThreshold = 60;
+
+      function checkScroll() {
+        if (window.scrollY > scrollThreshold) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+
+      window.addEventListener('scroll', checkScroll, { passive: true });
+      checkScroll();
+    })();
+
+    // --- Mobile menu toggle ---
+    (function() {
+      var toggle = document.getElementById('menuToggle');
+      var navLinks = document.getElementById('navLinks');
+
+      toggle.addEventListener('click', function() {
+        toggle.classList.toggle('active');
+        navLinks.classList.toggle('open');
+      });
+
+      // Close menu when a link is clicked
+      var links = navLinks.querySelectorAll('a');
+      for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', function() {
+          toggle.classList.remove('active');
+          navLinks.classList.remove('open');
+        });
+      }
+    })();
+
+    // --- Scroll reveal with IntersectionObserver ---
+    (function() {
+      var revealElements = document.querySelectorAll('.reveal');
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(function(el) {
+          observer.observe(el);
+        });
+      } else {
+        // Fallback: show everything
+        revealElements.forEach(function(el) {
+          el.classList.add('visible');
+        });
+      }
+    })();
+
+    // --- FAQ accordion ---
+    function toggleFaq(questionEl) {
+      var item = questionEl.parentElement;
+      var answer = item.querySelector('.faq-answer');
+      var isActive = item.classList.contains('active');
+
+      // Close all others
+      var allItems = document.querySelectorAll('.faq-item');
+      allItems.forEach(function(el) {
+        el.classList.remove('active');
+        el.querySelector('.faq-answer').style.maxHeight = null;
+      });
+
+      // Toggle the clicked one
+      if (!isActive) {
+        item.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+
+    // --- Lead form handler ---
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      var form = e.target;
+      var name = form.querySelector('input[name="name"]').value;
+      var btn = form.querySelector('button[type="submit"]');
+
+      btn.textContent = 'Thank you, ' + name + '!';
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      btn.style.cursor = 'default';
+
+      // Reset after 3 seconds
+      setTimeout(function() {
+        btn.textContent = 'Send My Free Assessment';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        form.reset();
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
